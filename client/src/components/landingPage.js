@@ -3,7 +3,7 @@ import HomepageButton from "./homePageButton";
 
 import "./landingPage.scss";
 
-function LandingPage() {
+const LandingPage = () => {
   return (
     <Fragment>
       <div className="landing-page">
@@ -16,6 +16,6 @@ function LandingPage() {
       </div>
     </Fragment>
   );
-}
+};
 
 export default LandingPage;
