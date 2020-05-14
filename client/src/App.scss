@@ -1,5 +1,7 @@
+@import "./variables.scss";
+
 .App-header {
-  background-color: #b0b0b0;
+  background-color: $grey;
   min-height: 100vh;
 
   color: black;

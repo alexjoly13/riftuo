@@ -1,0 +1,41 @@
+@import "../variables.scss";
+
+.form-container {
+  min-height: 100vh;
+}
+
+.form-and-result {
+  width: 25%;
+}
+
+.player-id-border-container {
+  border-radius: 5px;
+  background-color: white;
+}
+
+.player-id-card {
+  width: 100%;
+  border-radius: 5px;
+  background-color: $grey;
+}
+
+.profile-icon {
+  border-radius: 5px;
+}
+
+.summoner-name {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+  .form-and-result {
+    width: 55%;
+  }
+}
+
+@media (max-width: 750px) {
+  .form-and-result {
+    width: 75%;
+  }
+}

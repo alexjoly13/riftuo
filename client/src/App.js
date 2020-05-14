@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LandingPage from "./components/landingPage";
 import "./App.scss";
 import { Switch, Route } from "react-router-dom";
-import SignupPage from "./signupPage";
+import SignupPage from "./components/signupPage";
 import { postSummonerSignup } from "./api";
 
 function App() {
@@ -13,7 +13,6 @@ function App() {
     postSummonerSignup(userData)
       .then((response) => {
         setUser({ user: response.data });
-        // console.log("c'est le USER", user);
       })
       .catch((err) => console.log(err));
   };
