@@ -20,3 +20,7 @@ function errorHandler(err) {
 export const postSummonerSignup = (userData) => {
   return backendApi.post("/signup", userData).catch(errorHandler);
 };
+
+export const postValidatedSignup = (userData) => {
+  return backendApi.post("/signup/confirmed", userData).catch(errorHandler);
+};

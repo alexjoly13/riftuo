@@ -7,7 +7,7 @@ const LandingPage = () => {
   return (
     <Fragment>
       <div className="landing-page">
-        <h1>Riftuo.</h1>
+        <h1 className="font-weight-bold">Riftuo.</h1>
         <p>
           Find a duo partner we select for you, that perfectly suits your
           playstyle

@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 
 import { profileIconGetter } from "../helpers/image-helper";
-
-import "./summonerIDControl.scss";
 import { serverNameFormatter } from "../helpers/account-info-helper";
 
-const SummonerIDControl = ({ userInputInfos, summData }) => {
+import "./summonerIDControl.scss";
+
+const SummonerIDControl = ({ userInputInfos, summData, formSubmit }) => {
+  const [finalUser] = useState({
+    userInfos: userInputInfos,
+    riotInfos: summData.user,
+  });
+
   return (
     <div className="mt-4">
       <div>
@@ -33,7 +38,12 @@ const SummonerIDControl = ({ userInputInfos, summData }) => {
         </div>
       </div>
       <div className="d-flex mt-4 justify-content-center">
-        <Button variant="primary" className="mr-3">
+        <Button
+          variant="primary"
+          className="mr-3"
+          type="submit"
+          onClick={(event) => formSubmit(event, finalUser)}
+        >
           Confirm
         </Button>
         <Button variant="danger">Cancel</Button>

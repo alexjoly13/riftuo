@@ -31,8 +31,6 @@ router.post("/signup", (req, res) => {
     },
   });
 
-  console.log("NOM du FORM", params);
-
   const summonerData = async () => {
     const sumonner = await kayn.Summoner.by
       .name(params.summonerName)
@@ -44,6 +42,11 @@ router.post("/signup", (req, res) => {
   };
 
   summonerData();
+});
+
+router.post("/signup/confirmed", (req, res) => {
+  const item = req.body;
+  console.log(item);
 });
 
 module.exports = router;

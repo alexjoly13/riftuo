@@ -5,7 +5,7 @@ import SummonerIDControl from "./summonerIDControl";
 
 import "./signupPage.scss";
 
-const SignupPage = ({ submitMethod, userData }) => {
+const SignupPage = ({ submitMethod, userData, validatedSubmit }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -19,8 +19,6 @@ const SignupPage = ({ submitMethod, userData }) => {
     summonerName: "",
     server: "EUROPE_WEST",
   });
-
-  console.log("user par props", userData);
 
   return (
     <div className="form-container d-flex align-items-center justify-content-center">
@@ -78,7 +76,11 @@ const SignupPage = ({ submitMethod, userData }) => {
           </Button>
         </Form>
         {userData && (
-          <SummonerIDControl userInputInfos={values} summData={userData} />
+          <SummonerIDControl
+            userInputInfos={values}
+            summData={userData}
+            formSubmit={validatedSubmit}
+          />
         )}
       </div>
     </div>
