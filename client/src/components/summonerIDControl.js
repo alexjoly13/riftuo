@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 import { profileIconGetter } from "../helpers/image-helper";
@@ -6,14 +7,21 @@ import { serverNameFormatter } from "../helpers/account-info-helper";
 
 import "./summonerIDControl.scss";
 
-const SummonerIDControl = ({ userInputInfos, summData, formSubmit }) => {
+const SummonerIDControl = ({
+  userInputInfos,
+  summData,
+  formSubmit,
+  loggedIn,
+}) => {
   const [finalUser] = useState({
     userInfos: userInputInfos,
     riotInfos: summData.user,
   });
 
+  console.log(finalUser);
   return (
     <div className="mt-4">
+      {loggedIn && <Redirect to="/user/dashboard" />}
       <div>
         <h3 className="text-center">Is this your account ?</h3>
       </div>

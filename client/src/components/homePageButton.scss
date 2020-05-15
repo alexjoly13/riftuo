@@ -13,17 +13,17 @@
 
 .fill:hover,
 .fill:focus {
-  box-shadow: inset 0 0 0 2em $orange;
+  box-shadow: inset 0 0 0 2em $blue;
 }
 
 .landing-page-button {
-  color: $orange;
+  color: $blue;
   transition: 0.25s;
 
   &:hover,
   &:focus {
-    border-color: $orange;
+    border-color: $blue;
     color: #fff;
-    background: $orange;
+    background: $blue;
   }
 }

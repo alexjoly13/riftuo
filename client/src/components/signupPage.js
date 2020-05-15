@@ -5,7 +5,12 @@ import SummonerIDControl from "./summonerIDControl";
 
 import "./signupPage.scss";
 
-const SignupPage = ({ submitMethod, userData, validatedSubmit }) => {
+const SignupPage = ({
+  submitMethod,
+  userData,
+  validatedSubmit,
+  isLoggedIn,
+}) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
@@ -80,6 +85,7 @@ const SignupPage = ({ submitMethod, userData, validatedSubmit }) => {
             userInputInfos={values}
             summData={userData}
             formSubmit={validatedSubmit}
+            loggedIn={isLoggedIn}
           />
         )}
       </div>
