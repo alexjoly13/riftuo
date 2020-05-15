@@ -1,11 +1,26 @@
 @import "../variables.scss";
 
+.signup-section {
+  min-height: 100%;
+}
+
 .form-container {
-  min-height: 100vh;
+  min-height: 80%;
 }
 
 .form-and-result {
   width: 25%;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.form-and-result input,
+select {
+  background-color: #efefef;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem #17a2b838;
 }
 
 .player-id-border-container {

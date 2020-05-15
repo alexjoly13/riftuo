@@ -18,7 +18,6 @@ const SummonerIDControl = ({
     riotInfos: summData.user,
   });
 
-  console.log(finalUser);
   return (
     <div className="mt-4">
       {loggedIn && <Redirect to="/user/dashboard" />}

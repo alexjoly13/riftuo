@@ -7,30 +7,34 @@ import "./navBar.scss";
 
 const NavigationBar = ({ logoutClick, loggedUser }) => {
   return (
-    <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href="/">Riftuo</Navbar.Brand>
-      <Nav className="mr-auto"></Nav>
-
+    <div>
       {loggedUser ? (
         <div>
-          <Nav className="mr-auto">
-            <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
-          </Nav>
-          <Button variant="outline-info" onClick={logoutClick}>
-            Log out
-          </Button>
+          <Navbar bg="dark" variant="dark">
+            <Navbar.Brand href="/">Riftuo</Navbar.Brand>
+            <Nav className="mr-auto">
+              <Nav.Link href="/user/dashboard">Dashboard</Nav.Link>
+            </Nav>
+            <Button variant="outline-info" href="/" onClick={logoutClick}>
+              Log out
+            </Button>
+          </Navbar>
         </div>
       ) : (
         <div>
-          <Button variant="outline-info" href="/signup" className="mr-2">
-            Sign up
-          </Button>
-          <Button variant="outline-info" href="/login">
-            Log in
-          </Button>
+          <Navbar bg="dark" variant="dark">
+            <Navbar.Brand href="/">Riftuo</Navbar.Brand>
+            <Nav className="mr-auto"></Nav>
+            <Button variant="outline-info" href="/signup" className="mr-2">
+              Sign up
+            </Button>
+            <Button variant="outline-info" href="/login">
+              Log in
+            </Button>
+          </Navbar>
         </div>
       )}
-    </Navbar>
+    </div>
   );
 };
 

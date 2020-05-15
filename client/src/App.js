@@ -43,6 +43,7 @@ function App() {
 
   const logout = () => {
     localStorage.removeItem("currentUser");
+    setCurrentUser("");
   };
 
   return (
