@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import SummonerIDControl from "./summonerIDControl";
@@ -6,25 +6,13 @@ import SummonerIDControl from "./summonerIDControl";
 import "./signupPage.scss";
 
 const SignupPage = ({
+  values,
   submitMethod,
   userData,
   validatedSubmit,
   isLoggedIn,
+  handleInputChange,
 }) => {
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-  };
-
-  const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    summonerName: "",
-    server: "EUROPE_WEST",
-  });
-
   return (
     <section className="signup-section">
       <div className="d-flex justify-content-center">

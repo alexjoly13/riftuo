@@ -24,3 +24,7 @@ export const postSummonerSignup = (userData) => {
 export const postValidatedSignup = (userData) => {
   return backendApi.post("/signup/confirmed", userData).catch(errorHandler);
 };
+
+export const postLogin = (userData) => {
+  return backendApi.post("/login", userData).catch(errorHandler);
+};

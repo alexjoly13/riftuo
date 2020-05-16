@@ -1,5 +1,7 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 import "./loginPage.scss";
 
@@ -13,19 +15,34 @@ const required = (value) => {
   }
 };
 
-const LoginPage = ({ isLoggedIn }) => {
+const LoginPage = ({ isLoggedIn, handleInputChange, values, login }) => {
+  console.log(values);
   return (
     <section className="signup-section">
+      {isLoggedIn && <Redirect to="/user/dashboard" />}
       <div className="d-flex justify-content-center">
         <h1>SIGN IN</h1>
       </div>
       <div className="form-container d-flex align-items-center justify-content-center">
         <div className="form-and-result p-5">
-          <Form>
+          <Form onSubmit={(event) => login(event, values)}>
             <Form.Label>E-mail</Form.Label>
-            <Form.Control type="text"></Form.Control>
+            <Form.Control
+              type="email"
+              name="email"
+              value={values.email}
+              onChange={handleInputChange}
+            ></Form.Control>
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password"></Form.Control>
+            <Form.Control
+              type="password"
+              name="password"
+              value={values.password}
+              onChange={handleInputChange}
+            ></Form.Control>
+            <Button variant="info" type="submit">
+              Submit
+            </Button>
           </Form>
         </div>
       </div>

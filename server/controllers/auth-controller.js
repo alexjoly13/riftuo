@@ -25,7 +25,8 @@ exports.signup = (req, res) => {
   });
 };
 
-exports.signin = (req, res) => {
+exports.login = (req, res) => {
+  console.log(req.body);
   User.findOne({
     email: req.body.email,
   }).exec((err, user) => {
@@ -37,25 +38,19 @@ exports.signin = (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "User Not found." });
     }
-  });
+    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
-  var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+    if (!passwordIsValid) {
+      return res.status(401).send({
+        accessToken: null,
+        message: "Invalid Password!",
+      });
+    }
 
-  if (!passwordIsValid) {
-    return res.status(401).send({
-      accessToken: null,
-      message: "Invalid Password!",
+    var token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: 86400, // 24H
     });
-  }
 
-  var token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-    expiresIn: 86400, // 24H
-  });
-
-  res.status(200).send({
-    id: user._id,
-    summonerName: user.summonerName,
-    email: user.email,
-    accessToken: token,
+    res.status(200).send({ user: user, accesstoken: token });
   });
 };
