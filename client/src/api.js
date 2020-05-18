@@ -28,3 +28,7 @@ export const postValidatedSignup = (userData) => {
 export const postLogin = (userData) => {
   return backendApi.post("/login", userData).catch(errorHandler);
 };
+
+export const dashboardData = (userName) => {
+  return backendApi.post(`/user/dashboard`, userName).catch(errorHandler);
+};

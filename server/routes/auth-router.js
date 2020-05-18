@@ -4,7 +4,8 @@ const router = express.Router();
 const { verifySignUp } = require("../middlewares");
 const controller = require("../controllers/auth-controller");
 
-const { Kayn, REGIONS } = require("kayn");
+const { REGIONS } = require("kayn");
+const kayn = require("../config/kayn.config");
 
 router.use(function (req, res, next) {
   res.header(
@@ -17,34 +18,10 @@ router.use(function (req, res, next) {
 router.post("/signup", (req, res) => {
   const params = req.body;
 
-  const kayn = Kayn(process.env.RIOT_API_KEY)({
-    region: REGIONS[params.server],
-    apiURLPrefix: "https://%s.api.riotgames.com",
-    locale: "en_US",
-    debugOptions: {
-      isEnabled: true,
-      showKey: false,
-    },
-    requestOptions: {
-      shouldRetry: true,
-      numberOfRetriesBeforeAbort: 3,
-      delayBeforeRetry: 1000,
-      burst: true,
-      shouldExitOn403: false,
-    },
-    cacheOptions: {
-      cache: null,
-      timeToLives: {
-        useDefault: false,
-        byGroup: {},
-        byMethod: {},
-      },
-    },
-  });
-
   const summonerData = async () => {
     const sumonner = await kayn.Summoner.by
       .name(params.summonerName)
+      .region(REGIONS[params.server])
       .then((response) => {
         console.log(response);
         res.json(response);

@@ -4,7 +4,12 @@ import "./App.scss";
 import { Switch, Route } from "react-router-dom";
 import SignupPage from "./components/signupPage";
 import UserDashboard from "./components/userDashboard";
-import { postSummonerSignup, postValidatedSignup, postLogin } from "./api";
+import {
+  postSummonerSignup,
+  postValidatedSignup,
+  postLogin,
+  dashboardData,
+} from "./api";
 import NavigationBar from "./components/navBar";
 import LoginPage from "./components/loginPage";
 
@@ -70,6 +75,14 @@ function App() {
     setCurrentUser("");
   };
 
+  const getDashboardData = (summonerName) => {
+    dashboardData(summonerName)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -102,7 +115,12 @@ function App() {
           />
           <Route
             path="/user/dashboard"
-            render={() => <UserDashboard userId={currentUser} />}
+            render={() => (
+              <UserDashboard
+                userId={currentUser}
+                getDashboardData={getDashboardData}
+              />
+            )}
           />
         </Switch>
       </header>

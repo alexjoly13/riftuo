@@ -38,7 +38,10 @@ app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 
 app.use(express.static(path.join(__dirname, "public")));
 
-const signup = require("./routes/auth-router");
-app.use("/", signup);
+const auth = require("./routes/auth-router");
+app.use("/", auth);
+
+const dashboard = require("./routes/dashboard-router");
+app.use("/", dashboard);
 
 module.exports = app;
