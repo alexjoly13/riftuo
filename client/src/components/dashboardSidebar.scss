@@ -1,0 +1,56 @@
+.sidebar {
+  max-width: 17%;
+  background-color: #343a40;
+  color: white;
+}
+
+.user-recap {
+  min-height: 20%;
+}
+
+.profile-image {
+  max-height: 10%;
+}
+
+.profile-icon-container {
+  width: 40%;
+}
+
+.profile-icon {
+  width: 100%;
+  border-radius: 100px;
+}
+
+.summoner-name {
+  font-size: 28px;
+}
+
+.links-container {
+  height: 65%;
+}
+
+.links-container a {
+  color: white;
+  text-decoration: none;
+}
+
+.links-container a:hover {
+  color: #00a0c6;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.links-container a:active {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bt {
+  border-top: solid 2px #5d5b5b;
+}
+
+.dashboard-link {
+  height: 12%;
+  border-bottom: solid 2px #5d5b5b;
+}

@@ -5,9 +5,9 @@ import Button from "react-bootstrap/Button";
 
 import "./navBar.scss";
 
-const NavigationBar = ({ logoutClick, loggedUser }) => {
+const NavigationBar = ({ logoutClick, loggedUser, displayNone }) => {
   return (
-    <div>
+    <div className={displayNone}>
       {loggedUser ? (
         <div>
           <Navbar bg="dark" variant="dark">

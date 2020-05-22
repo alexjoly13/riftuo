@@ -9,12 +9,13 @@ import {
   postValidatedSignup,
   postLogin,
   dashboardData,
+  getSummonersRank,
 } from "./api";
 import NavigationBar from "./components/navBar";
 import LoginPage from "./components/loginPage";
 
 function App() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({ user: "", rank: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   let [values, setValues] = useState({
     firstName: "",
@@ -25,12 +26,14 @@ function App() {
     server: "EUROPE_WEST",
   });
 
+  const [userRank, setUserRank] = useState({ rank: "", isLoaded: false });
+
   let userLoggedData = localStorage.getItem("currentUser");
   if (userLoggedData) {
     userLoggedData = JSON.parse(userLoggedData);
   }
 
-  console.log(userLoggedData);
+  console.log("Le user loggué :", userLoggedData);
   const [currentUser, setCurrentUser] = useState(userLoggedData);
 
   const handleInputChange = (e) => {
@@ -52,11 +55,11 @@ function App() {
       .then((response) => {
         localStorage.setItem("currentUser", JSON.stringify(response.data));
         setIsLoggedIn(true);
-        window.location.reload();
 
         return response.data;
       })
       .catch((err) => console.log(err));
+    window.location.reload();
   };
 
   const login = async (event, userData) => {
@@ -64,10 +67,11 @@ function App() {
     await postLogin(userData)
       .then((response) => {
         localStorage.setItem("currentUser", JSON.stringify(response.data));
+        setUser({ ...user, userData: response.data });
         setIsLoggedIn(true);
-        window.location.reload();
       })
       .catch((err) => console.log(err));
+    window.location.reload();
   };
 
   const logout = () => {
@@ -83,10 +87,24 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const summonerRank = (summonerId) => {
+    getSummonersRank(summonerId)
+      .then((response) =>
+        setUserRank({ ...userRank, rank: response.data, isLoaded: true })
+      )
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <NavigationBar loggedUser={currentUser} logoutClick={logout} />
+        <NavigationBar
+          loggedUser={currentUser}
+          logoutClick={logout}
+          {...(currentUser && { displayNone: "d-none" })}
+        />
+      </header>
+      <div className="App-content">
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route
@@ -118,12 +136,15 @@ function App() {
             render={() => (
               <UserDashboard
                 userId={currentUser}
+                userRank={userRank}
+                logoutClick={logout}
                 getDashboardData={getDashboardData}
+                summonerRank={summonerRank}
               />
             )}
           />
         </Switch>
-      </header>
+      </div>
     </div>
   );
 }

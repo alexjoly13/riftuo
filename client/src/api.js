@@ -30,5 +30,9 @@ export const postLogin = (userData) => {
 };
 
 export const dashboardData = (userName) => {
-  return backendApi.post(`/user/dashboard`, userName).catch(errorHandler);
+  return backendApi.post(`/dashboard/matches`, userName).catch(errorHandler);
+};
+
+export const getSummonersRank = (summonerId) => {
+  return backendApi.post("/dashboard/rank", summonerId).catch(errorHandler);
 };

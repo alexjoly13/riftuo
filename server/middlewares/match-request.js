@@ -9,7 +9,7 @@ const matchRequest = async (req, res) => {
     .accountID(accountId.accountId)
     .region(REGIONS[server])
     .query({ queue: 420 });
-  const gameIds = matches.slice(0, 20).map(({ gameId }) => gameId);
+  const gameIds = matches.slice(0, 10).map(({ gameId }) => gameId);
   const requests = gameIds.map(kayn.Match.get);
   const results = await Promise.all(requests);
   res.send(results);

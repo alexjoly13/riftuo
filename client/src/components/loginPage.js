@@ -16,7 +16,6 @@ const required = (value) => {
 };
 
 const LoginPage = ({ isLoggedIn, handleInputChange, values, login }) => {
-  console.log(values);
   return (
     <section className="signup-section">
       {isLoggedIn && <Redirect to="/user/dashboard" />}
