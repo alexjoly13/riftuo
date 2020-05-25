@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import "./rankResume.scss";
+import { winrateCalculator } from "../helpers/stats-helper";
 
 const RankResume = ({ userData, userRank, summonerRank }) => {
   useEffect(() => {
@@ -14,10 +15,13 @@ const RankResume = ({ userData, userRank, summonerRank }) => {
   const rankData = userRank.rank[0];
 
   return (
-    <div>
+    <div className="">
       {userRank.isLoaded ? (
         <div>
-          <div className="bg-white">
+          <div className="bg-white p-3">
+            <div>
+              <h4>Rank Details</h4>
+            </div>
             <div>
               <span>
                 {rankData.tier} {rankData.rank}
@@ -31,6 +35,7 @@ const RankResume = ({ userData, userRank, summonerRank }) => {
             <div>
               <span>{rankData.leaguePoints} LP</span>
             </div>
+            <div>{winrateCalculator(rankData.wins, rankData.losses)}</div>
           </div>
         </div>
       ) : (

@@ -1,4 +1,9 @@
-const { Kayn, REGIONS } = require("kayn");
+const { Kayn, REGIONS, METHOD_NAMES, RedisCache } = require("kayn");
+
+const redisCache = new RedisCache({
+  host: "redis",
+  port: 6379,
+});
 
 const kayn = Kayn(process.env.RIOT_API_KEY)({
   region: REGIONS.EUROPE_WEST,
@@ -16,11 +21,15 @@ const kayn = Kayn(process.env.RIOT_API_KEY)({
     shouldExitOn403: false,
   },
   cacheOptions: {
-    cache: null,
+    cache: redisCache,
     timeToLives: {
       useDefault: false,
       byGroup: {},
-      byMethod: {},
+      byMethod: {
+        [METHOD_NAMES.LEAGUE.GET_ALL_LEAGUE_POSITIONS_FOR_SUMMONER_V4]: 5000,
+        [METHOD_NAMES.MATCH.GET_MATCH]: 60000,
+        [METHOD_NAMES.MATCH.GET_MATCHLIST]: 60000,
+      },
     },
   },
 });
