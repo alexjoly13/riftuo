@@ -34,12 +34,12 @@ const Sidebar = ({ loggedUser, logoutClick }) => {
             <span>Dashboard</span>
           </div>
         </a>
-        <a href="#">
+        <a href="/users">
           <div className="dashboard-link d-flex justify-content-center align-items-center">
             <span>Find Teammates</span>
           </div>
         </a>
-        <a href="#">
+        <a href="/settings">
           <div className="dashboard-link d-flex justify-content-center align-items-center">
             <span>Account Settings</span>
           </div>

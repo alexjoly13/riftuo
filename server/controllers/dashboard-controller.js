@@ -20,6 +20,6 @@ exports.matchRequest = async (req, res) => {
     .query({ queue: 420 });
   const gameIds = matches.slice(0, 20).map(({ gameId }) => gameId);
   const requests = gameIds.map(kayn.Match.get);
-  const results = await Promise.all(requests);
+  const results = await Promise.all(requests).catch((err) => console.log(err));
   res.send(results);
 };

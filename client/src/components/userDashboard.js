@@ -1,20 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Sidebar from "./dashboardSideBar";
 import RankResume from "./rankResume";
+import KDAStats from "./kdaStats";
 
 const UserDashboard = ({
   userId,
   userRank,
-  getDashboardData,
+  getLastMatches,
+  lastMatchesArray,
   summonerRank,
   logoutClick,
 }) => {
-  useEffect(() => {
-    getDashboardData({
-      user: userId.user.summonerAccountData,
-      server: userId.user.server,
-    });
-  }, []);
   return (
     <div className="h-100 d-flex">
       <Sidebar loggedUser={userId} logoutClick={logoutClick} />
@@ -23,11 +19,20 @@ const UserDashboard = ({
           <h1>Your Account</h1>
         </div>
         <div className="d-flex">
-          <RankResume
-            userData={userId}
-            userRank={userRank}
-            summonerRank={summonerRank}
-          />
+          <div>
+            <RankResume
+              userData={userId}
+              userRank={userRank}
+              summonerRank={summonerRank}
+            />
+          </div>
+          <div>
+            <KDAStats
+              userData={userId}
+              lastMatchesArray={lastMatchesArray}
+              getLastMatches={getLastMatches}
+            />
+          </div>
         </div>
       </div>
     </div>

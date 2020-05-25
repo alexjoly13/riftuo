@@ -8,7 +8,7 @@ const RankResume = ({ userData, userRank, summonerRank }) => {
     summonerRank({
       userId: userData.user.summonerAccountData.id,
     });
-  }, [userData.user.summonerAccountData.id]);
+  }, []);
 
   console.log("le Rank du User", userRank);
 

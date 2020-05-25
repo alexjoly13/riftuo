@@ -15,7 +15,7 @@ import NavigationBar from "./components/navBar";
 import LoginPage from "./components/loginPage";
 
 function App() {
-  const [user, setUser] = useState({ user: "", rank: "" });
+  const [user, setUser] = useState({ user: "" });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   let [values, setValues] = useState({
     firstName: "",
@@ -27,6 +27,7 @@ function App() {
   });
 
   const [userRank, setUserRank] = useState({ rank: "", isLoaded: false });
+  const [lastMatches, setLastMatches] = useState();
 
   let userLoggedData = localStorage.getItem("currentUser");
   if (userLoggedData) {
@@ -79,10 +80,10 @@ function App() {
     setCurrentUser("");
   };
 
-  const getDashboardData = (summonerName) => {
+  const getLastMatches = (summonerName) => {
     dashboardData(summonerName)
       .then((response) => {
-        console.log(response.data);
+        setLastMatches(response.data);
       })
       .catch((err) => console.log(err));
   };
@@ -138,7 +139,8 @@ function App() {
                 userId={currentUser}
                 userRank={userRank}
                 logoutClick={logout}
-                getDashboardData={getDashboardData}
+                lastMatchesArray={lastMatches}
+                getLastMatches={getLastMatches}
                 summonerRank={summonerRank}
               />
             )}
