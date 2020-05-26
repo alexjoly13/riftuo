@@ -27,7 +27,10 @@ function App() {
   });
 
   const [userRank, setUserRank] = useState({ rank: "", isLoaded: false });
-  const [lastMatches, setLastMatches] = useState();
+  const [lastMatches, setLastMatches] = useState({
+    matches: "",
+    isLoaded: false,
+  });
 
   let userLoggedData = localStorage.getItem("currentUser");
   if (userLoggedData) {
@@ -83,7 +86,11 @@ function App() {
   const getLastMatches = (summonerName) => {
     dashboardData(summonerName)
       .then((response) => {
-        setLastMatches(response.data);
+        setLastMatches({
+          ...lastMatches,
+          matches: response.data,
+          isLoaded: true,
+        });
       })
       .catch((err) => console.log(err));
   };

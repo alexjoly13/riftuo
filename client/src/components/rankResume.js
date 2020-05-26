@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 
 import "./rankResume.scss";
 import { winrateCalculator } from "../helpers/stats-helper";
@@ -15,13 +15,13 @@ const RankResume = ({ userData, userRank, summonerRank }) => {
   const rankData = userRank.rank[0];
 
   return (
-    <div className="">
+    <Fragment>
       {userRank.isLoaded ? (
-        <div>
-          <div className="bg-white p-3">
-            <div>
-              <h4>Rank Details</h4>
-            </div>
+        <div className="col-4 bg-white p-3 mr-3">
+          <div>
+            <h5>Ranking</h5>
+          </div>
+          <div>
             <div>
               <span>
                 {rankData.tier} {rankData.rank}
@@ -43,7 +43,7 @@ const RankResume = ({ userData, userRank, summonerRank }) => {
           <span>IS LOADING ....</span>
         </div>
       )}
-    </div>
+    </Fragment>
   );
 };
 

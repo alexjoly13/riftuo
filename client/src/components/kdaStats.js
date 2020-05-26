@@ -1,19 +1,26 @@
-import React, { useEffect } from "react";
+import React, { Fragment } from "react";
 
 import "./kdaStats.scss";
+import { getAverageKDA } from "../helpers/stats-helper";
 
-const KDAStats = ({ userData, getLastMatches, lastMatchesArray }) => {
-  useEffect(() => {
-    getLastMatches({
-      user: userData.user.summonerAccountData,
-      server: userData.user.server,
-    });
-  }, []);
+const KDAStats = ({ userData, lastMatchesArray }) => {
   console.log("Les 20 dernières games :", lastMatchesArray);
   return (
-    <div>
-      <p>HELLO FRIEND</p>
-    </div>
+    <Fragment>
+      {lastMatchesArray.isLoaded ? (
+        <div className="col-4 bg-white p3">
+          <div>
+            <h5>Average Stats</h5>
+          </div>
+          {getAverageKDA(
+            lastMatchesArray.matches,
+            userData.user.summonerAccountData.name
+          )}
+        </div>
+      ) : (
+        <p>LOADING .....</p>
+      )}
+    </Fragment>
   );
 };
 
